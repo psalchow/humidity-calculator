@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "HumidityCalculator",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}
