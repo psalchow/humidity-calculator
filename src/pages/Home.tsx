@@ -1,60 +1,45 @@
-import MessageListItem from '../components/MessageListItem';
-import { useState } from 'react';
-import { Message, getMessages } from '../data/messages';
+import * as React from 'react';
 import {
-  IonContent,
-  IonHeader,
-  IonList,
-  IonPage,
-  IonRefresher,
-  IonRefresherContent,
-  IonTitle,
-  IonToolbar,
-  useIonViewWillEnter
+    IonCol,
+    IonContent,
+    IonGrid,
+    IonHeader,
+    IonPage,
+    IonRow,
+    IonTitle,
+    IonToolbar,
+    useIonViewWillEnter
 } from '@ionic/react';
 import './Home.css';
+import {ClimateCard} from "../components/ClimateCard";
 
 const Home: React.FC = () => {
 
-  const [messages, setMessages] = useState<Message[]>([]);
+    useIonViewWillEnter(() => {
+    });
 
-  useIonViewWillEnter(() => {
-    const msgs = getMessages();
-    setMessages(msgs);
-  });
-
-  const refresh = (e: CustomEvent) => {
-    setTimeout(() => {
-      e.detail.complete();
-    }, 3000);
-  };
-
-  return (
-    <IonPage id="home-page">
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Inbox</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <IonRefresher slot="fixed" onIonRefresh={refresh}>
-          <IonRefresherContent></IonRefresherContent>
-        </IonRefresher>
-
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">
-              Inbox
-            </IonTitle>
-          </IonToolbar>
-        </IonHeader>
-
-        <IonList>
-          {messages.map(m => <MessageListItem key={m.id} message={m} />)}
-        </IonList>
-      </IonContent>
-    </IonPage>
-  );
+    return (
+        <IonPage id="home-page">
+            <IonHeader>
+                <IonToolbar>
+                    <IonTitle>Luftfeuchtigkeit</IonTitle>
+                </IonToolbar>
+            </IonHeader>
+            <IonContent fullscreen>
+                <IonGrid>
+                    <IonRow>
+                        <IonCol sizeXs="12" sizeMd="12" sizeLg="6">
+                            <ClimateCard title="Außenwerte" initialTemperature={10} initialRelativeHumidity={50}/>
+                        </IonCol>
+                        <IonCol sizeXs="12" sizeMd="12" sizeLg="6">
+                            <ClimateCard title="Innenwerte" initialTemperature={20} initialRelativeHumidity={60}
+                                         minTemperature={10} maxTemperature={32}/>
+                        </IonCol>
+                    </IonRow>
+                </IonGrid>
+            </IonContent>
+        </IonPage>
+    );
 };
 
 export default Home;
