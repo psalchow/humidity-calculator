@@ -41,8 +41,8 @@ export const ClimateCard: React.FC<ClimateCardProps> = (props) => {
 
             <IonCardContent>
                 <Scatter>
-                    <IonCardTitle>Absolut: {absHumidity} g/㎥</IonCardTitle>
-                    <IonCardTitle>Taupunkt: {taupunkt} °C</IonCardTitle>
+                    <IonCardTitle>Absolut: {absHumidity}&nbsp;g/㎥</IonCardTitle>
+                    <IonCardTitle>Taupunkt: {taupunkt}&nbsp;°C</IonCardTitle>
                 </Scatter>
             </IonCardContent>
         </IonCard>
